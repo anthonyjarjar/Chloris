@@ -1,13 +1,20 @@
-from models.model import resnet18
+from models.model import resnet50
 from fastapi import FastAPI, File, UploadFile
 
 import torch
 from PIL import Image 
 import torchvision.transforms as transforms 
+from fastapi.middleware.cors import CORSMiddleware
+
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+
 
 app = FastAPI()
 
-model = resnet18()
+model = resnet50()
 model.load_state_dict(torch.load("models/resnet50_V2.pth", map_location=torch.device('cpu')))
 model.eval()
 
@@ -15,13 +22,15 @@ model.eval()
 def read_root():
     return {"Hello": "World"}
 
+@app.post("/echo")
+async def echo_image():
+    return {"string"}
+
 @app.post("/predict")
 def read_item(image: UploadFile = File()):
-
+    logging.info("Received prediction request")
     file = image.file
     
-
-
     file.seek(0)
     transform = transforms.Compose([transforms.Resize((128, 128)),
                                     transforms.ToTensor()])
@@ -41,5 +50,6 @@ def read_item(image: UploadFile = File()):
 
     return predicted.item()
 
+#! uvicorn app:app --host 192.168.1.101 --port 8000
 
   

@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO)
 app = FastAPI()
 
 model = resnet50()
-model.load_state_dict(torch.load("models/resnet50_V2.pth", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load("models/resnet_V4.pth", map_location=torch.device('cpu')))
 model.eval()
 
 @app.get("/")

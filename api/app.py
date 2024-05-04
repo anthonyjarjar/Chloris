@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO)
 app = FastAPI()
 
 model = resnet50()
-model.load_state_dict(torch.load("models/resnet_V4.pth", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load("models/resnet_V5.pth", map_location=torch.device('cpu')))
 model.eval()
 
 @app.get("/")
@@ -33,7 +33,9 @@ def read_item(image: UploadFile = File()):
     
     file.seek(0)
     transform = transforms.Compose([transforms.Resize((128, 128)),
-                                    transforms.ToTensor()])
+                                    transforms.ToTensor(), 
+                                    transforms.Normalize(mean=[0.485, 0.456, 0.406], 
+                                                         std=[0.229, 0.224, 0.225])])
 
     img = Image.open(file)
 

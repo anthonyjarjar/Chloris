@@ -1,6 +1,6 @@
 from models.model import resnet50
-from fastapi import FastAPI, File, UploadFile
-
+from fastapi import FastAPI, File, UploadFile, Form
+from pydantic import BaseModel
 import torch
 from PIL import Image 
 import torchvision.transforms as transforms 
@@ -10,6 +10,11 @@ import logging
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
+
+class LocationPredictionRequest(BaseModel):
+    longitude: str
+    latitude: str
+    bird_species: str
 
 
 app = FastAPI()
@@ -52,6 +57,20 @@ def read_item(image: UploadFile = File()):
 
     return predicted.item()
 
+class PredictionRequest(BaseModel):
+    longitude: float
+    latitude: float
+    birdSpecies: str
+
+@app.post("/predict_location")
+def predict_location(request_data: PredictionRequest):
+    logging.info("Received location prediction request")
+
+    print(request_data)
+
+    longitude, latitude, birdSpecies = request_data
+
+    return {'prediction': 1}
 #! uvicorn app:app --host 192.168.1.101 --port 8000
 
   

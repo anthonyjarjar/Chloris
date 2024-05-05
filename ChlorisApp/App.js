@@ -15,9 +15,11 @@ export default function App() {
   // Location state
   const [longitude, setLongitude] = useState(null);
   const [latitude, setLatitude] = useState(null);
+  const [locationProbability, setLocationProbability] = useState(null);
+
 
   // Bird species state
-  const [birdSpecies, setBirdSpecies] = useState('Black-capped Chickadee'); // Default to Black-capped Chickadee
+  const [birdSpecies, setBirdSpecies] = useState('Dark-eyed Junco');
 
   useEffect(() => {
     (async () => {
@@ -127,16 +129,17 @@ export default function App() {
           birdSpecies,
         }),
       });
-
-      console.log(longitude, latitude, birdSpecies)
+  
       const result = await response.json();
       setLocationPrediction(result.prediction === 1 ? 'New bird sighting' : 'Not a new bird sighting');
+      setLocationProbability(result.probability); // Assuming 'probability' is the key returned by the backend
     } catch (error) {
       console.error('Error predicting location:', error);
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -167,7 +170,7 @@ export default function App() {
           style={styles.picker}
           onValueChange={(itemValue, itemIndex) => setBirdSpecies(itemValue)}
         >
-          <Picker.Item label="Black-Eyed Junco" value="Black-Eyed Junco" />
+          <Picker.Item label="Dark-eyed Junco" value="Dark-eyed Junco" />
           <Picker.Item label="American Robin" value="American Robin" />
           <Picker.Item label="American Goldfinch" value="American Goldfinch" />
           <Picker.Item label="Blue Jay" value="Blue Jay" />
@@ -181,11 +184,14 @@ export default function App() {
         </TouchableOpacity>
   
         {loading ? (
-          <ActivityIndicator size="large" color="#3498db" />
-        ) : (
-          locationPrediction && <Text style={styles.locationPrediction}>{locationPrediction}</Text>
-        )}
-  
+            <ActivityIndicator size="large" color="#3498db" />
+          ) : (
+            locationPrediction && (
+              <View>
+                <Text style={styles.locationPrediction}>{locationPrediction} (Probability {locationProbability}%) </Text>
+              </View>
+            )
+          )}
         <StatusBar style="auto" />
       </ScrollView>
     </GestureHandlerRootView>

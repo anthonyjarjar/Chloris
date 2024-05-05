@@ -1,14 +1,21 @@
 from models.model import resnet50
-from fastapi import FastAPI, File, UploadFile, Form
+from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
 import torch
 from PIL import Image 
 import torchvision.transforms as transforms 
-from fastapi.middleware.cors import CORSMiddleware
+from datetime import datetime
+from ocsvm import get_probability
 
 import logging
 
-# Configure logging
+current_month = datetime.now().month
+
+current_month_str = str(current_month).zfill(2)
+
+current_month_int = int(current_month_str)
+
+
 logging.basicConfig(level=logging.INFO)
 
 class LocationPredictionRequest(BaseModel):
@@ -66,11 +73,16 @@ class PredictionRequest(BaseModel):
 def predict_location(request_data: PredictionRequest):
     logging.info("Received location prediction request")
 
-    print(request_data)
-
     longitude, latitude, birdSpecies = request_data
 
-    return {'prediction': 1}
-#! uvicorn app:app --host 192.168.1.101 --port 8000
+    prediction, probability = get_probability(longitude=longitude[1], latitude=latitude[1], month=current_month_int, speciescode=birdSpecies[1])
 
-  
+    probability_rounded = round(probability, 2) * 100
+
+    if prediction == 1:
+        return {'prediction': 1, 'probability': probability_rounded}
+    else:
+        return{'prediction': -1, 'probability': 0.00}
+
+
+#! uvicorn app:app --host 192.168.1.101 --port 8000

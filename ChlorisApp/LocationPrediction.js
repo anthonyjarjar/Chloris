@@ -63,8 +63,6 @@ export default function LocationPrediction({ navigation }) {
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Predict Location</Text>
   
-        <View style={styles.divider}></View>
-
         <Picker
           selectedValue={birdSpecies}
           style={styles.picker}

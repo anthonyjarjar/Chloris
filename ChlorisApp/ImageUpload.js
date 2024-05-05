@@ -66,8 +66,6 @@ export default function ImageUpload({ navigation }) {
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Upload Bird Image</Text>
   
-        <View style={styles.divider}></View>
-
         <TouchableOpacity style={styles.uploadButton} onPress={pickImage}>
           <Text style={styles.buttonText}>Upload Image</Text>
         </TouchableOpacity>

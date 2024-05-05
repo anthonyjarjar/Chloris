@@ -61,7 +61,7 @@ export default function LocationPrediction({ navigation }) {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>Predict Location</Text>
+        <Text style={styles.title}>Sighting Probability</Text>
   
         <Picker
           selectedValue={birdSpecies}
@@ -78,7 +78,7 @@ export default function LocationPrediction({ navigation }) {
         </Picker>
 
         <TouchableOpacity style={styles.predictButton} onPress={getLocation}>
-          <Text style={styles.buttonText}>Predict Location</Text>
+          <Text style={styles.buttonText}>Calculate Probability</Text>
         </TouchableOpacity>
   
         {loading ? (

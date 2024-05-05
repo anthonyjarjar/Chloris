@@ -14,10 +14,10 @@ export default function Home({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>Chloris</Text>
       <TouchableOpacity style={styles.button} onPress={goToImageUpload}>
-        <Text style={styles.buttonText}>Go to Image Upload</Text>
+        <Text style={styles.buttonText}>Species Identifier</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={goToLocationPrediction}>
-        <Text style={styles.buttonText}>Go to Location Prediction</Text>
+        <Text style={styles.buttonText}>Sighting Probability</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,0 +1,12 @@
+fastapi==0.78.0
+torch==1.12.1
+torchvision==0.13.1
+Pillow==9.2.0
+numpy==1.23.1
+pandas==1.4.3
+scikit-learn==1.1.1
+joblib==1.1.0
+matplotlib==3.5.2
+pydantic==1.9.1
+huggingface-hub==0.8.1
+uvicorn==0.18.2

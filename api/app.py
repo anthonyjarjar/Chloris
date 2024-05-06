@@ -5,7 +5,7 @@ import torch
 from PIL import Image 
 import torchvision.transforms as transforms 
 from datetime import datetime
-from ocsvm import get_probability
+from src.ocsvm import get_probability
 
 import logging
 

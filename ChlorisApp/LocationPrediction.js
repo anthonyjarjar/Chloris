@@ -11,7 +11,6 @@ export default function LocationPrediction({ navigation }) {
   const [locationProbability, setLocationProbability] = useState(null);
   const [birdSpecies, setBirdSpecies] = useState('Dark-eyed Junco');
 
-  // Function to get current location
   const getLocation = async () => {
     setLoading(true);
     try {
@@ -22,7 +21,6 @@ export default function LocationPrediction({ navigation }) {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      // Replace with your prediction function or API call
       predictLocation(location.coords.longitude, location.coords.latitude);
     } catch (error) {
       console.error('Error getting location:', error);
@@ -31,11 +29,9 @@ export default function LocationPrediction({ navigation }) {
     }
   };
 
-  // Function to predict location
   const predictLocation = async (longitude, latitude) => {
     setLoading(true);
     try {
-      // Replace the URL with your server URL
       const response = await fetch('http://192.168.1.101:8000/predict_location', {
         method: 'POST',
         headers: {
@@ -50,7 +46,7 @@ export default function LocationPrediction({ navigation }) {
   
       const result = await response.json();
       setLocationPrediction(result.prediction === 1 ? 'New bird sighting' : 'Not a new bird sighting');
-      setLocationProbability(result.probability); // Assuming 'probability' is the key returned by the backend
+      setLocationProbability(result.probability);
     } catch (error) {
       console.error('Error predicting location:', error);
     } finally {
@@ -68,13 +64,12 @@ export default function LocationPrediction({ navigation }) {
           style={styles.picker}
           onValueChange={(itemValue, itemIndex) => setBirdSpecies(itemValue)}
         >
-          <Picker.Item label="Dark-eyed Junco" value="Dark-eyed Junco" />
           <Picker.Item label="American Robin" value="American Robin" />
           <Picker.Item label="American Goldfinch" value="American Goldfinch" />
           <Picker.Item label="Blue Jay" value="Blue Jay" />
           <Picker.Item label="Cardinal" value="Cardinal" />
+          <Picker.Item label="Dark-eyed Junco" value="Dark-eyed Junco" />
           <Picker.Item label="Downy Woodpecker" value="Downy Woodpecker" />
-          {/* Add more bird species here */}
         </Picker>
 
         <TouchableOpacity style={styles.predictButton} onPress={getLocation}>
@@ -110,10 +105,10 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#27ae60', // Blue color
+    color: '#27ae60',
   },
   predictButton: {
-    backgroundColor: '#27ae60', // Green color
+    backgroundColor: '#27ae60',
     padding: 15,
     borderRadius: 10,
     marginBottom: 20,
@@ -127,7 +122,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#27ae60', // Green color
+    color: '#27ae60',
   },
   divider: {
     borderBottomColor: '#27ae60',
@@ -137,7 +132,7 @@ const styles = StyleSheet.create({
   },
   picker: {
     width: '100%',
-    backgroundColor: '#27ae60', // Green color
+    backgroundColor: '#27ae60',
     color: '#fff',
     marginBottom: 20,
     borderRadius: 10,

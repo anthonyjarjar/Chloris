@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
-from speciescodes import speciescode_to_name
+from src.speciescodes import speciescode_to_name
 
 scaler = StandardScaler()
 

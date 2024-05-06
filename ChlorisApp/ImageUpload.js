@@ -10,7 +10,6 @@ export default function ImageUpload({ navigation }) {
   const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Function to pick image from gallery
   const pickImage = async () => {
     console.log('Uploading image...');
     setLoading(true);
@@ -21,25 +20,22 @@ export default function ImageUpload({ navigation }) {
       aspect: [4, 3],
     });  
 
-    // Check if the action was cancelled by the user
     if (!result.cancelled && result.assets && result.assets.length > 0) {
-      const imageUri = result.assets[0].uri;  // Correctly access the URI from the assets array
+      const imageUri = result.assets[0].uri; 
       console.log('Image URI:', imageUri);
-      setImage(imageUri);  // Set the image URI to state
-      predictImage(imageUri);  // Pass the URI to the predictImage function
+      setImage(imageUri);  
+      predictImage(imageUri);  
     } else {
       setLoading(false);
     }
   };
 
-  // Function to predict image
   const predictImage = async (selectedImageURI) => {
     console.log('Predicting image...', selectedImageURI);
     const formData = new FormData();
     formData.append('image', { uri: selectedImageURI, name: 'image.jpg', type: 'image/jpeg' });
 
     try {
-      // Replace the URL with your server URL
       const response = await fetch('http://192.168.1.101:8000/predict', {
         method: 'POST',
         body: formData,
@@ -51,7 +47,6 @@ export default function ImageUpload({ navigation }) {
       const result = await response.json();
       console.log('Server Response:', result);
 
-      // Assuming the response contains the prediction label
       const predictionLabel = result;
       setPrediction(birdLabels[predictionLabel + 1]);
     } catch (error) {
@@ -100,10 +95,10 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#27ae60', // Blue color
+    color: '#27ae60',
   },
   uploadButton: {
-    backgroundColor: '#27ae60', // Green color
+    backgroundColor: '#27ae60', 
     padding: 15,
     borderRadius: 10,
     marginBottom: 20,
@@ -121,13 +116,13 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: '#27ae60', // Green color
+    borderColor: '#27ae60', 
   },
   prediction: {
     marginTop: 10,
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#27ae60', // Green color
+    color: '#27ae60', 
   },
   divider: {
     borderBottomColor: '#27ae60',

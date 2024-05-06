@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from './Home'; // Import the Home component
-import ImageUpload from './ImageUpload'; // Import the ImageUpload component
-import LocationPrediction from './LocationPrediction'; // Correct casing
+import Home from './Home'; 
+import ImageUpload from './ImageUpload';
+import LocationPrediction from './LocationPrediction';
 
 const Stack = createStackNavigator();
 

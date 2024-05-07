@@ -14,6 +14,45 @@ Before you begin, ensure you have the following installed:
 - Expo CLI
 - A code editor of your choice (e.g., VS Code)
 
+### Directory Tree
+
+- [**ChlorisApp**](https://github.com/anthonyjarjar/Chloris/tree/master/ChlorisApp)
+  - [`App.js`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/App.js)
+  - [`Home.js`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/Home.js)
+  - [`ImageUpload.js`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/ImageUpload.js)
+  - [`LocationPrediction.js`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/LocationPrediction.js)
+  - [`app.json`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/app.json)
+  - [**assets**](https://github.com/anthonyjarjar/Chloris/tree/master/ChlorisApp/assets)
+    - [`adaptive-icon.png`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/assets/adaptive-icon.png)
+    - [`favicon.png`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/assets/favicon.png)
+    - [`icon.png`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/assets/icon.png)
+    - [`splash.png`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/assets/splash.png)
+  - [`babel.config.js`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/babel.config.js)
+  - [`bird_names_dict.js`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/bird_names_dict.js)
+  - [`package-lock.json`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/package-lock.json)
+  - [`package.json`](https://github.com/anthonyjarjar/Chloris/blob/master/ChlorisApp/package.json)
+- [`LICENSE`](https://github.com/anthonyjarjar/Chloris/blob/master/LICENSE)
+- [`README.md`](https://github.com/anthonyjarjar/Chloris/blob/master/README.md)
+- [**api**](https://github.com/anthonyjarjar/Chloris/tree/master/api)
+  - [`app.py`](https://github.com/anthonyjarjar/Chloris/blob/master/api/app.py)
+  - [**models**](https://github.com/anthonyjarjar/Chloris/tree/master/api/models)
+    - [`__init__.py`](https://github.com/anthonyjarjar/Chloris/blob/master/api/models/__init__.py)
+    - [`model.py`](https://github.com/anthonyjarjar/Chloris/blob/master/api/models/model.py)
+    - [`one_class_svm_model.pkl`](https://github.com/anthonyjarjar/Chloris/blob/master/api/models/one_class_svm_model.pkl)
+    - [`resnet_V5.pth`](https://github.com/anthonyjarjar/Chloris/blob/master/api/models/resnet_V5.pth)
+    - [`testing_data.npz`](https://github.com/anthonyjarjar/Chloris/blob/master/api/models/testing_data.npz)
+  - [`requirments.txt`](https://github.com/anthonyjarjar/Chloris/blob/master/api/requirments.txt)
+  - [**src**](https://github.com/anthonyjarjar/Chloris/tree/master/api/src)
+    - [`__init__.py`](https://github.com/anthonyjarjar/Chloris/blob/master/api/src/__init__.py)
+    - [**jupyter notebooks**](https://github.com/anthonyjarjar/Chloris/tree/master/api/src/jupyter%20notebooks)
+    - [`ocsvm.py`](https://github.com/anthonyjarjar/Chloris/blob/master/api/src/ocsvm.py)
+    - [`speciescodes.py`](https://github.com/anthonyjarjar/Chloris/blob/master/api/src/speciescodes.py)
+- [**documents**](https://github.com/anthonyjarjar/Chloris/tree/master/documents)
+  - [`AnthonyJarjour_ProjectReport.pdf`](https://github.com/anthonyjarjar/Chloris/blob/master/documents/AnthonyJarjour_ProjectReport.pdf)
+  - [`Chloris.pptx`](https://github.com/anthonyjarjar/Chloris/blob/master/documents/Chloris.pptx)
+  - [`proposal.md`](https://github.com/anthonyjarjar/Chloris/blob/master/documents/proposal.md)
+
+
 ### Installation
 
 1. **Clone the repository**
@@ -442,4 +481,3 @@ This script sets up and trains an SGD (Stochastic Gradient Descent) One-Class SV
       - If the batch is empty (which can occur if the start index equals the dataset size), the loop breaks early.
   - `oc_svm.partial_fit(X_batch)`
     - Trains the model incrementally on the current batch. This method is useful for online learning or when the dataset is too large to fit into memory at once.
-    

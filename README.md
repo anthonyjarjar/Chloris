@@ -63,7 +63,7 @@ Before you begin, ensure you have the following installed:
       ```
 **Now you're ready to go and checkout the app with the expogo mobile app!**
 ****
-### Code Walkthrough
+# Code Walkthrough
 
 This walk through will only include the relevant sections for the relevant files that include concepts for AI and Machine learning
 
@@ -183,8 +183,6 @@ This walk through will only include the relevant sections for the relevant files
         return ResNet(BottleNeck, [3, 4, 6, 3])
     ```
 > Please open this ipynb in a seperate window as syntax looks different in markdown file
-
-# Code Analysis of ResNet Implementation
 
 ## Classes and Functions
 
@@ -331,7 +329,6 @@ for epoch in range(num_epochs):
 
     print(f"Epoch {epoch+1}/{num_epochs}, Train Loss: {train_losses[-1]}, Validation Loss: {val_losses[-1]}, Train Accuracy: {train_accuracy}, Validation Accuracy: {val_accuracy}")
 ```
-# Code Analysis of PyTorch Training Loop
 
 ## Setup and Initialization
 
@@ -393,12 +390,56 @@ for epoch in range(num_epochs):
 - Prints a summary of the epoch's results, including losses and accuracies for both training and validation.
 
 This structured description of the training loop gives a clear insight into each step involved in training the neural network model, including the dynamic adjustments made to the learning rate and the conditions for early stopping based on validation performance.
+***
+2. [bird_sighting_prediction.ipynb](https://github.com/anthonyjarjar/Chloris/blob/main/api/src/jupyter%20notebooks/bird_sighting_prediction.ipynb)
+    ```python
+    oc_svm = SGDOneClassSVM(nu=0.01, max_iter=1000, tol=1e-4, learning_rate='optimal', shuffle=True, verbose=1, random_state=42)
+    
+    batch_size = 1000
+    
+    num_batches = int(np.ceil(len(X_scaled) / batch_size))
+    
+    
+    for i in range(num_batches):
+        start_idx = i * batch_size
+        end_idx = min((i + 1) * batch_size, len(X_scaled))
+    
+        X_batch = X_train[start_idx:end_idx]
+    
+        if X_batch.shape[0] == 0:
+            break
+        oc_svm.partial_fit(X_batch)
+    ```
+    
+## Overview
+This script sets up and trains an SGD (Stochastic Gradient Descent) One-Class SVM on a dataset `X_scaled` using mini-batches. This approach is particularly suitable for large datasets that do not fit into memory all at once.
 
+## Model Configuration
+- `oc_svm = SGDOneClassSVM(nu=0.01, max_iter=1000, tol=1e-4, learning_rate='optimal', shuffle=True, verbose=1, random_state=42)`
+  - An SGDOneClassSVM model is initialized with the following parameters:
+    - `nu=0.01`: An upper bound on the fraction of training errors and a lower bound of the fraction of support vectors.
+    - `max_iter=1000`: The maximum number of passes over the training data.
+    - `tol=1e-4`: The stopping criterion for the model if training loss is less than this threshold.
+    - `learning_rate='optimal'`: Specifies how the learning rate is set. 'Optimal' automatically adjusts the learning rate based on the data.
+    - `shuffle=True`: Enables shuffling of the data before each epoch, which is beneficial for stochastic gradient methods.
+    - `verbose=1`: Enables verbose output in the console, useful for monitoring training progress.
+    - `random_state=42`: Sets a seed for reproducibility of shuffling and other random operations.
 
+## Batch Processing Setup
+- `batch_size = 1000`
+  - Defines the number of samples per batch.
+- `num_batches = int(np.ceil(len(X_scaled) / batch_size))`
+  - Computes the total number of batches needed to process the entire dataset. This is calculated by dividing the total number of samples by the batch size and rounding up to ensure all samples are included.
 
-  
+## Training Loop
+- `for i in range(num_batches):`
+  - Iterates over each batch of the dataset.
+  - `start_idx = i * batch_size`: Calculates the start index of the current batch.
+  - `end_idx = min((i + 1) * batch_size, len(X_scaled))`: Calculates the end index of the current batch, ensuring it does not exceed the total number of samples.
+  - `X_batch = X_train[start_idx:end_idx]`: Slices the training data to get the current batch.
+  - Condition Check:
+    - `if X_batch.shape[0] == 0:`
+      - If the batch is empty (which can occur if the start index equals the dataset size), the loop breaks early.
+  - `oc_svm.partial_fit(X_batch)`
+    - Trains the model incrementally on the current batch. This method is useful for online learning or when the dataset is too large to fit into memory at once.
     
-    
-    
-    
-      

@@ -2,6 +2,12 @@
 
 Welcome to Chloris, a modern application designed to help users connect with the environment through technology. Our app leverages the power of Node.js and Expo Go to provide a seamless mobile experience.
 
+#### Refrences #####
+- [BIRDS 525 SPECIES- IMAGE CLASSIFICATION](https://www.kaggle.com/datasets/gpiosenka/100-bird-species)
+- [FeederWatch](https://feederwatch.org/explore/raw-dataset-requests/)
+- All other refrences for code, articles and documents are on the last page of the project
+    [report](https://github.com/anthonyjarjar/Chloris/blob/main/documents/AnthonyJarjour_ProjectReport.pdf)
+
 ## Getting Started
 
 This guide will help you set up Chloris on your local machine for development and testing purposes. Follow these simple steps to get started.

@@ -51,8 +51,10 @@ Before you begin, ensure you have the following installed:
   - [**src**](https://github.com/anthonyjarjar/Chloris/tree/master/api/src)
     - [`__init__.py`](https://github.com/anthonyjarjar/Chloris/blob/master/api/src/__init__.py)
     - [**jupyter notebooks**](https://github.com/anthonyjarjar/Chloris/tree/master/api/src/jupyter%20notebooks)
-      - [`ocsvm.py`](https://github.com/anthonyjarjar/Chloris/blob/master/api/src/ocsvm.py)
-      - [`speciescodes.py`](https://github.com/anthonyjarjar/Chloris/blob/master/api/src/speciescodes.py)
+      - [`bird_sighting_prediction.ipynb`](https://github.com/anthonyjarjar/Chloris/blob/main/api/src/jupyter%20notebooks/bird_sighting_prediction.ipynb) **Model Training**
+      - [`image_classifier.ipynb`](https://github.com/anthonyjarjar/Chloris/blob/main/api/src/jupyter%20notebooks/image_classifier.ipynb) **Model Training**
+    - [`ocsvm.py`](https://github.com/anthonyjarjar/Chloris/blob/master/api/src/ocsvm.py)
+    - [`speciescodes.py`](https://github.com/anthonyjarjar/Chloris/blob/master/api/src/speciescodes.py)
 - [**documents**](https://github.com/anthonyjarjar/Chloris/tree/master/documents)
   - [`AnthonyJarjour_ProjectReport.pdf`](https://github.com/anthonyjarjar/Chloris/blob/master/documents/AnthonyJarjour_ProjectReport.pdf)
   - [`Chloris.pptx`](https://github.com/anthonyjarjar/Chloris/blob/master/documents/Chloris.pptx)

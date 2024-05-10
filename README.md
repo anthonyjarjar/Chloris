@@ -1,6 +1,6 @@
 # Chloris
 
-Welcome to Chloris, a modern application designed to help users connect with the environment through technology. Our app leverages the power of Node.js and Expo Go to provide a seamless mobile experience.
+Welcome to Chloris, a modern application designed to help users connect with the environment through technology. This app leverages the power of Node.js and Expo Go to provide a seamless mobile experience.
 
 #### Refrences #####
 - [BIRDS 525 SPECIES- IMAGE CLASSIFICATION](https://www.kaggle.com/datasets/gpiosenka/100-bird-species)
